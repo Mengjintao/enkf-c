@@ -1,7 +1,7 @@
-LICENSE:
+#LICENSE:
     EnKF-C is a public software. See LICENSE for details.
 
-COMPILING
+#COMPILING
 
 EnKF-C is developed for GNU/Linux platform.
 
@@ -9,12 +9,35 @@ Create "make.inc" for your architecture (have a look at examples in `arch'
 directory), then run "make". This should create executables bin/enkf_prep,
 bin/enkf_calc and bin/enkf_update.
 
-DEPENDENCIES
+#DEPENDENCIES
 
 clang or gcc
 openmpi
 libnetcdf
 liblapack (or better the Intel's version -- libmkl_rt)
+
+#Install on Ubuntu 18.04
+#setting hdf5
+'''
+sudo apt-get install libhdf5-serial-dev
+sudo apt-get install libnetcdf-dev
+sudo apt-get install libhdf5-dev
+cd /usr/lib/x86_64-linux-gnu
+sudo ln -s libhdf5_serial.so.100.0.1 libhdf5.so
+sudo ln -s libhdf5_serial_hl.so.100.0.0 libhdf5_hl.so
+
+#install gfortran, blas, lapack openmpi
+sudo apt-get install gfortran
+sudo apt-get install libblas-dev liblapack-dev
+sudo apt-get install openmpi-bin
+sudo apt install libopenmpi-dev
+mpicc --version
+
+cp arch/make.inc.linux-desktop-lapack  ./make.inc
+make
+'''
+
+
 
 USER MANUAL
 
